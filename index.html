@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Celebrations | December 9–14</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #fdf9f4;
+      --champagne: #f5eadc;
+      --blush: #f7dfe3;
+      --rose-petal: #f2bcc7;
+      --lavender: #ece7f8;
+      --powder-blue: #e4eef8;
+      --sage: #e4ede6;
+      --warm-beige: #efe5d8;
+      --gold: #c29b59;
+      --ink: #352d2a;
+      --ink-soft: #6c5f5a;
+      --glass: rgba(255, 252, 248, 0.66);
+      --glass-border: rgba(255, 255, 255, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--ink);
+      background-color: var(--ivory);
+      background-image:
+        radial-gradient(circle at 12% 14%, rgba(247, 223, 227, 0.82) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(236, 231, 248, 0.78) 0%, transparent 48%),
+        radial-gradient(circle at 82% 78%, rgba(228, 238, 248, 0.74) 0%, transparent 48%),
+        radial-gradient(circle at 20% 82%, rgba(228, 237, 230, 0.78) 0%, transparent 45%),
+        linear-gradient(180deg, var(--ivory) 0%, var(--champagne) 52%, var(--warm-beige) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Hidden Native Toggle for 100% Reliable Tap Opening */
+    #open-toggle {
+      position: fixed;
+      opacity: 0;
+      pointer-events: none;
+      width: 0;
+      height: 0;
+    }
+
+    /* Enhanced Ambient Moving Lights & Fairy Lights */
+    .ambient-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(48px);
+      opacity: 0.86;
+      animation: driftLight var(--orb-dur, 12s) ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      top: 2%;
+      left: -55px;
+      background: radial-gradient(circle, rgba(245, 200, 210, 0.9) 0%, var(--blush) 70%);
+      --orb-dur: 11s;
+    }
+
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      top: 20%;
+      right: -70px;
+      background: radial-gradient(circle, rgba(232, 222, 250, 0.9) 0%, var(--lavender) 70%);
+      --orb-dur: 14s;
+      animation-delay: -3s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      bottom: 6%;
+      left: -45px;
+      background: radial-gradient(circle, rgba(217, 234, 220, 0.9) 0%, var(--sage) 70%);
+      --orb-dur: 13s;
+      animation-delay: -6s;
+    }
+
+    .orb-4 {
+      width: 270px;
+      height: 270px;
+      top: 52%;
+      right: -40px;
+      background: radial-gradient(circle, rgba(216, 232, 248, 0.9) 0%, var(--powder-blue) 70%);
+      --orb-dur: 10s;
+      animation-delay: -2s;
+    }
+
+    .orb-5 {
+      width: 240px;
+      height: 240px;
+      top: 38%;
+      left: 35%;
+      background: radial-gradient(circle, rgba(250, 232, 198, 0.65) 0%, transparent 72%);
+      --orb-dur: 12s;
+      animation-delay: -4s;
+    }
+
+    @keyframes driftLight {
+      0% { transform: translate(0px, 0px) scale(0.95); }
+      50% { transform: translate(34px, -24px) scale(1.1); }
+      100% { transform: translate(-24px, 30px) scale(1.04); }
+    }
+
+    .fairy-light {
+      position: absolute;
+      width: var(--size, 8px);
+      height: var(--size, 8px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 248, 224, 0.96) 20%, rgba(255, 232, 163, 0.72) 58%, rgba(245, 207, 118, 0) 100%);
+      box-shadow:
+        0 0 11px 3px rgba(245, 207, 118, 0.48),
+        0 0 22px 6px rgba(255, 232, 163, 0.26);
+      opacity: 0;
+      animation: twinkleMove var(--dur, 7.2s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes twinkleMove {
+      0%, 100% {
+        opacity: 0;
+        transform: translate(0px, 0px) scale(0.8);
+      }
+      50% {
+        opacity: 0.75;
+        transform: translate(var(--lx, 22px), var(--ly, -24px)) scale(1.18);
+      }
+    }
+
+    /* Enhanced Floating Rose & Pastel Petals */
+    .petals-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -28px;
+      width: var(--pw, 14px);
+      height: var(--ph, 18px);
+      border-radius: 75% 15% 75% 15%;
+      box-shadow: inset -2px -2px 5px rgba(196, 122, 138, 0.28), 0 3px 8px rgba(196, 138, 148, 0.16);
+      opacity: 0;
+      animation: fallPetal var(--fall-dur, 21s) ease-in-out infinite;
+      animation-delay: var(--fall-delay, 0s);
+    }
+
+    @keyframes fallPetal {
+      0% {
+        transform: translateY(-28px) translateX(0px) rotate(0deg) scale(0.95);
+        opacity: 0;
+      }
+      12% { opacity: 0.78; }
+      50% {
+        transform: translateY(50vh) translateX(var(--drift, 32px)) rotate(170deg) scale(1.04);
+        opacity: 0.74;
+      }
+      88% { opacity: 0.65; }
+      100% {
+        transform: translateY(106vh) translateX(calc(var(--drift, 32px) * -0.55)) rotate(330deg) scale(0.95);
+        opacity: 0;
+      }
+    }
+
+    /* 2. Opening Invitation Screen */
+    #welcome-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(247, 223, 227, 0.82) 0%, transparent 52%),
+        radial-gradient(circle at 80% 75%, rgba(236, 231, 248, 0.78) 0%, transparent 52%),
+        linear-gradient(160deg, rgba(253, 249, 244, 0.9) 0%, rgba(245, 234, 220, 0.88) 55%, rgba(236, 231, 248, 0.9) 100%);
+      transition: opacity 0.75s ease, transform 0.75s ease, visibility 0.75s;
+    }
+
+    /* Dismiss welcome screen when checkbox is checked OR .dismissed class is added */
+    #open-toggle:checked ~ #welcome-screen,
+    #welcome-screen.dismissed {
+      opacity: 0;
+      transform: scale(1.04) translateY(-16px);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .invite-card {
+      position: relative;
+      z-index: 51;
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 253, 250, 0.76);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 34px 22px 30px;
+      text-align: center;
+      box-shadow:
+        0 20px 50px rgba(96, 75, 56, 0.09),
+        inset 0 0 0 1px rgba(194, 155, 89, 0.25);
+    }
+
+    .corner-lotus {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 10px;
+      display: block;
+    }
+
+    .script-greeting {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.95rem;
+      color: var(--gold);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .invite-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+    }
+
+    .invite-title {
+      font-family: 'Alex Brush', 'Great Vibes', cursive;
+      font-size: 3.35rem;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      color: #4a3525;
+      text-shadow: 0 2px 12px rgba(194, 155, 89, 0.22);
+      margin-bottom: 4px;
+    }
+
+    .invite-subtitle-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.32rem;
+      font-weight: 500;
+      color: #8c6432;
+      margin-bottom: 10px;
+    }
+
+    .invite-sub {
+      font-size: 0.88rem;
+      line-height: 1.58;
+      color: var(--ink-soft);
+      max-width: 315px;
+      margin: 0 auto 22px;
+    }
+
+    .date-pill {
+      display: inline-block;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: linear-gradient(90deg, rgba(247, 223, 227, 0.7), rgba(228, 237, 230, 0.7));
+      border: 1px solid rgba(194, 155, 89, 0.35);
+      margin-bottom: 24px;
+    }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 250px;
+      padding: 15px 24px;
+      border: 1px solid rgba(194, 155, 89, 0.6);
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fffdfb 0%, #f6eadb 100%);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+      box-shadow: 0 10px 24px rgba(194, 155, 89, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .open-btn:active,
+    .open-btn:hover {
+      transform: scale(0.98);
+      background: linear-gradient(135deg, #ffffff 0%, #f7dfe3 100%);
+      box-shadow: 0 12px 26px rgba(194, 155, 89, 0.32);
+    }
+
+    /* 3 & 4. Main Invitation Experience */
+    #main-invitation {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 36px 14px 44px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
+    }
+
+    #open-toggle:checked ~ #main-invitation,
+    #main-invitation.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-banner {
+      text-align: center;
+      padding: 12px 8px 6px;
+    }
+
+    .hero-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.1rem;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .hero-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.35rem;
+      font-weight: 600;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .hero-dates {
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* Section Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 260px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(194, 155, 89, 0.55), transparent);
+    }
+
+    /* Countdown Glass Box */
+    .countdown-card {
+      width: 100%;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 20px 12px;
+      text-align: center;
+      box-shadow: 0 14px 34px rgba(96, 75, 56, 0.06);
+      margin-bottom: 28px;
+    }
+
+    .countdown-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .time-unit {
+      min-width: 0;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(194, 155, 89, 0.25);
+      border-radius: 16px;
+      padding: 10px 4px;
+    }
+
+    .time-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.05;
+      display: block;
+    }
+
+    .time-lbl {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Programme Section */
+    .section-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.75rem;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .event-card {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      border-radius: 24px;
+      padding: 18px 18px 17px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 12px 30px rgba(92, 72, 54, 0.06);
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    /* Pastel Card Tints */
+    .tint-blush { background: linear-gradient(135deg, rgba(255, 252, 249, 0.78), rgba(247, 223, 227, 0.58)); }
+    .tint-sage { background: linear-gradient(135deg, rgba(255, 252, 249, 0.78), rgba(228, 237, 230, 0.6)); }
+    .tint-lavender { background: linear-gradient(135deg, rgba(255, 252, 249, 0.78), rgba(236, 231, 248, 0.6)); }
+    .tint-blue { background: linear-gradient(135deg, rgba(255, 252, 249, 0.78), rgba(228, 238, 248, 0.6)); }
+    .tint-champagne { background: linear-gradient(135deg, rgba(255, 252, 249, 0.8), rgba(245, 234, 220, 0.65)); }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .date-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(194, 155, 89, 0.35);
+    }
+
+    .motif-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
+    .function-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.68rem;
+      font-weight: 600;
+      line-height: 1.18;
+      color: var(--ink);
+      margin-bottom: 4px;
+      overflow-wrap: break-word;
+    }
+
+    .function-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.04rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      margin-bottom: 9px;
+      overflow-wrap: break-word;
+    }
+
+    .function-time {
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--ink);
+      opacity: 0.82;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      line-height: 1.4;
+      overflow-wrap: break-word;
+    }
+
+    .time-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      display: inline-block;
+    }
+
+    /* Closing Section */
+    .closing-card {
+      margin-top: 28px;
+      width: 100%;
+      background: rgba(255, 252, 248, 0.74);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 26px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 14px 36px rgba(96, 75, 56, 0.06);
+    }
+
+    .closing-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .closing-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.28rem;
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .closing-note {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    /* Subtle Single-Line Credit at the Very End */
+    .subtle-credit {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: rgba(108, 95, 90, 0.5);
+      white-space: nowrap;
+    }
+
+    @media (min-width: 600px) {
+      #main-invitation {
+        padding: 44px 18px 54px;
+      }
+      .invite-card {
+        padding: 42px 34px 38px;
+      }
+      .hero-heading {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Native Toggle Switch so "Open Invitation" ALWAYS works on iPad/iPhone -->
+  <input type="checkbox" id="open-toggle" aria-hidden="true" />
+
+  <!-- Enhanced Ambient Moving Lights & Fairy Lights -->
+  <div class="ambient-layer" aria-hidden="true">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="glow-orb orb-4"></div>
+    <div class="glow-orb orb-5"></div>
+
+    <span class="fairy-light" style="top: 6%; left: 13%; --size: 8px; --dur: 6.8s; --delay: 0.1s; --lx: 24px; --ly: -22px;"></span>
+    <span class="fairy-light" style="top: 11%; left: 48%; --size: 7px; --dur: 7.5s; --delay: 1.5s; --lx: -20px; --ly: 22px;"></span>
+    <span class="fairy-light" style="top: 15%; left: 83%; --size: 10px; --dur: 7.2s; --delay: 0.8s; --lx: -26px; --ly: 18px;"></span>
+    <span class="fairy-light" style="top: 24%; left: 27%; --size: 9px; --dur: 6.4s; --delay: 2.4s; --lx: 22px; --ly: -18px;"></span>
+    <span class="fairy-light" style="top: 31%; left: 8%; --size: 7px; --dur: 7.1s; --delay: 1.9s; --lx: 26px; --ly: 20px;"></span>
+    <span class="fairy-light" style="top: 37%; left: 72%; --size: 8px; --dur: 6.7s; --delay: 0.5s; --lx: -22px; --ly: -20px;"></span>
+    <span class="fairy-light" style="top: 44%; left: 90%; --size: 10px; --dur: 6.5s; --delay: 1.2s; --lx: -24px; --ly: -16px;"></span>
+    <span class="fairy-light" style="top: 51%; left: 18%; --size: 7px; --dur: 7.4s; --delay: 2.8s; --lx: 24px; --ly: 18px;"></span>
+    <span class="fairy-light" style="top: 58%; left: 56%; --size: 9px; --dur: 6.9s; --delay: 1.0s; --lx: -18px; --ly: 24px;"></span>
+    <span class="fairy-light" style="top: 65%; left: 84%; --size: 8px; --dur: 7.6s; --delay: 3.3s; --lx: -22px; --ly: -19px;"></span>
+    <span class="fairy-light" style="top: 70%; left: 12%; --size: 8px; --dur: 7.8s; --delay: 1.8s; --lx: 20px; --ly: -24px;"></span>
+    <span class="fairy-light" style="top: 77%; left: 76%; --size: 10px; --dur: 6.6s; --delay: 2.5s; --lx: -26px; --ly: -16px;"></span>
+    <span class="fairy-light" style="top: 83%; left: 36%; --size: 8px; --dur: 7.2s; --delay: 0.4s; --lx: 22px; --ly: -20px;"></span>
+    <span class="fairy-light" style="top: 89%; left: 67%; --size: 7px; --dur: 6.4s; --delay: 2.1s; --lx: -21px; --ly: 18px;"></span>
+    <span class="fairy-light" style="top: 93%; left: 20%; --size: 9px; --dur: 7.0s; --delay: 3.1s; --lx: 20px; --ly: -22px;"></span>
+  </div>
+
+  <!-- Enhanced Floating Rose & Pastel Petals -->
+  <div class="petals-layer" id="petals-layer" aria-hidden="true">
+    <span class="petal" style="left: 4%; background: linear-gradient(135deg, #f9d5dc, #eeb4c1); --pw: 15px; --ph: 19px; --fall-dur: 19s; --fall-delay: 0s; --drift: 32px;"></span>
+    <span class="petal" style="left: 11%; background: linear-gradient(135deg, #fce2e6, #f3c4cf); --pw: 13px; --ph: 17px; --fall-dur: 22s; --fall-delay: -3.2s; --drift: -28px;"></span>
+    <span class="petal" style="left: 18%; background: linear-gradient(135deg, #ece7f8, #dcd2f2); --pw: 14px; --ph: 18px; --fall-dur: 23.5s; --fall-delay: -7.1s; --drift: 26px;"></span>
+    <span class="petal" style="left: 25%; background: linear-gradient(135deg, #f9d5dc, #ecaec0); --pw: 16px; --ph: 20px; --fall-dur: 18.5s; --fall-delay: -11.4s; --drift: -34px;"></span>
+    <span class="petal" style="left: 32%; background: linear-gradient(135deg, #e4ede6, #cfe0d3); --pw: 13px; --ph: 17px; --fall-dur: 21s; --fall-delay: -5.6s; --drift: 30px;"></span>
+    <span class="petal" style="left: 39%; background: linear-gradient(135deg, #fbdbe1, #f0b8c5); --pw: 15px; --ph: 19px; --fall-dur: 24.5s; --fall-delay: -14.1s; --drift: -26px;"></span>
+    <span class="petal" style="left: 46%; background: linear-gradient(135deg, #f5eadc, #ebd7be); --pw: 14px; --ph: 18px; --fall-dur: 25s; --fall-delay: -9.8s; --drift: 28px;"></span>
+    <span class="petal" style="left: 53%; background: linear-gradient(135deg, #f9d5dc, #eeb4c1); --pw: 16px; --ph: 21px; --fall-dur: 19.5s; --fall-delay: -2.9s; --drift: -32px;"></span>
+    <span class="petal" style="left: 60%; background: linear-gradient(135deg, #e4eef8, #cfe0f2); --pw: 13px; --ph: 17px; --fall-dur: 21.5s; --fall-delay: -12.4s; --drift: 26px;"></span>
+    <span class="petal" style="left: 67%; background: linear-gradient(135deg, #fce2e6, #f1bcc9); --pw: 15px; --ph: 19px; --fall-dur: 23s; --fall-delay: -6.7s; --drift: -30px;"></span>
+    <span class="petal" style="left: 74%; background: linear-gradient(135deg, #f9d5dc, #ecaec0); --pw: 14px; --ph: 18px; --fall-dur: 20.5s; --fall-delay: -15.5s; --drift: 34px;"></span>
+    <span class="petal" style="left: 81%; background: linear-gradient(135deg, #ece7f8, #dcd2f2); --pw: 15px; --ph: 19px; --fall-dur: 24s; --fall-delay: -8.6s; --drift: -26px;"></span>
+    <span class="petal" style="left: 88%; background: linear-gradient(135deg, #f9d5dc, #eeb4c1); --pw: 16px; --ph: 20px; --fall-dur: 19s; --fall-delay: -4.1s; --drift: 28px;"></span>
+    <span class="petal" style="left: 94%; background: linear-gradient(135deg, #fce2e6, #f3c4cf); --pw: 13px; --ph: 17px; --fall-dur: 22.5s; --fall-delay: -10.9s; --drift: -24px;"></span>
+  </div>
+
+  <!-- 2. Opening Invitation Screen -->
+  <section id="welcome-screen" aria-label="Wedding Welcome Screen">
+    <div class="invite-card">
+      <svg class="corner-lotus" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 12C45 24 46 35 40 46C34 35 35 24 40 12Z" fill="#f2cfd6" stroke="#c29b59" stroke-width="1.2"/>
+        <path d="M40 46C31 36 22 30 12 31C18 41 28 46 40 46Z" fill="#e4ede6" stroke="#c29b59" stroke-width="1.2"/>
+        <path d="M40 46C49 36 58 30 68 31C62 41 52 46 40 46Z" fill="#ece7f8" stroke="#c29b59" stroke-width="1.2"/>
+        <path d="M40 46C29 44 19 47 13 55C23 57 32 54 40 46Z" fill="#e4eef8" stroke="#c29b59" stroke-width="1.2"/>
+        <path d="M40 46C51 44 61 47 67 55C57 57 48 54 40 46Z" fill="#f5eadc" stroke="#c29b59" stroke-width="1.2"/>
+        <circle cx="40" cy="48" r="3.5" fill="#c29b59"/>
+        <path d="M22 64C32 68 48 68 58 64" stroke="#c29b59" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+
+      <div class="script-greeting">Shubh Vivah</div>
+      <div class="invite-eyebrow">A Celebration of Love &amp; Togetherness</div>
+      <h1 class="invite-title">Sharma Family</h1>
+      <p class="invite-subtitle-lead">invites you to</p>
+      <p class="invite-sub">
+        share in the joy, blessings, and festivities of our wedding celebrations.
+      </p>
+      <div class="date-pill">9 – 14 December</div>
+      <br />
+      <label for="open-toggle" class="open-btn" id="open-invitation-btn" role="button" tabindex="0">
+        Open Invitation
+      </label>
+    </div>
+  </section>
+
+  <!-- 3 & 4. Main Website / Wedding Programme -->
+  <main id="main-invitation">
+    <header class="hero-banner">
+      <div class="hero-script">Wedding Celebrations</div>
+      <h2 class="hero-heading">The Festive Programme</h2>
+      <p class="hero-dates">9th – 14th December</p>
+    </header>
+
+    <!-- Section Divider -->
+    <div class="divider" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3L14.5 9.5L21 12L14.5 14.5L12 21L9.5 14.5L3 12L9.5 9.5L12 3Z" stroke="#c29b59" stroke-width="1.2" fill="#f7dfe3"/>
+      </svg>
+    </div>
+
+    <!-- Countdown to Wedding (9 December) -->
+    <section class="countdown-card" aria-label="Wedding Countdown">
+      <div class="countdown-label">Counting Down to 9 December</div>
+      <div class="countdown-grid">
+        <div class="time-unit">
+          <span class="time-num" id="cd-days">--</span>
+          <span class="time-lbl">Days</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-num" id="cd-hours">--</span>
+          <span class="time-lbl">Hours</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-num" id="cd-mins">--</span>
+          <span class="time-lbl">Minutes</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-num" id="cd-secs">--</span>
+          <span class="time-lbl">Seconds</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programme Schedule -->
+    <section aria-label="Wedding Programme Schedule">
+      <div class="section-header">
+        <div class="section-script">Moments to Cherish</div>
+        <h3 class="section-title">The days we have been waiting for</h3>
+      </div>
+
+      <div class="timeline">
+        <!-- 9 December: Sunderkand -->
+        <article class="event-card tint-champagne">
+          <div class="card-top">
+            <span class="date-badge">9 December</span>
+            <svg class="motif-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 5C19 10 19 15 16 20C13 15 13 10 16 5Z" stroke="#c29b59" stroke-width="1.3" fill="#f5eadc"/>
+              <path d="M10 24C14 26 18 26 22 24" stroke="#c29b59" stroke-width="1.3" stroke-linecap="round"/>
+              <circle cx="16" cy="22" r="2" fill="#c29b59"/>
+            </svg>
+          </div>
+          <h4 class="function-name">Sunderkand</h4>
+          <p class="function-desc">An evening of prayer, devotion and blessings.</p>
+          <p class="function-time"><span class="time-dot"></span>6:00 PM</p>
+        </article>
+
+        <!-- 10 December: Haldi -->
+        <article class="event-card tint-blush">
+          <div class="card-top">
+            <span class="date-badge">10 December</span>
+            <svg class="motif-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx="16" cy="16" r="5" stroke="#c29b59" stroke-width="1.3" fill="#f7dfe3"/>
+              <path d="M16 5V8M16 24V27M5 16H8M24 16H27M8.2 8.2L10.3 10.3M21.7 21.7L23.8 23.8M23.8 8.2L21.7 10.3M10.3 21.7L8.2 23.8" stroke="#c29b59" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4 class="function-name">Haldi</h4>
+          <p class="function-desc">A carnival of colours, laughter and golden traditions.</p>
+          <p class="function-time"><span class="time-dot"></span>11:00 AM</p>
+        </article>
+
+        <!-- 11 December: Bhaat -->
+        <article class="event-card tint-sage">
+          <div class="card-top">
+            <span class="date-badge">11 December</span>
+            <svg class="motif-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 7C21 12 21 19 16 25C11 19 11 12 16 7Z" stroke="#c29b59" stroke-width="1.3" fill="#e4ede6"/>
+              <path d="M8 16H12M20 16H24" stroke="#c29b59" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4 class="function-name">Bhaat</h4>
+          <p class="function-desc">A celebration of family, love and traditions.</p>
+          <p class="function-time"><span class="time-dot"></span>5:00 PM</p>
+        </article>
+
+        <!-- 11 December: Mehndi -->
+        <article class="event-card tint-lavender">
+          <div class="card-top">
+            <span class="date-badge">11 December</span>
+            <svg class="motif-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 6C19.5 11 22 14.5 22 18.5C22 22.1 19.3 25 16 25C12.7 25 10 22.1 10 18.5C10 14.5 12.5 11 16 6Z" stroke="#c29b59" stroke-width="1.3" fill="#ece7f8"/>
+              <circle cx="16" cy="18.5" r="2.2" fill="#c29b59"/>
+            </svg>
+          </div>
+          <h4 class="function-name">Mehndi</h4>
+          <p class="function-desc">Where traditions meet the dance floor.</p>
+          <p class="function-time"><span class="time-dot"></span>7:00 PM</p>
+        </article>
+
+        <!-- 12 December: Ghurchadi -->
+        <article class="event-card tint-blue">
+          <div class="card-top">
+            <span class="date-badge">12 December</span>
+            <svg class="motif-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M8 22C8 14.5 11.5 9 16 7C20.5 9 24 14.5 24 22" stroke="#c29b59" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M12 22C12 17 13.8 13.5 16 12C18.2 13.5 20 17 20 22" stroke="#c29b59" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4 class="function-name">Ghurchadi</h4>
+          <p class="function-desc">A timeless tradition, a beautiful beginning.</p>
+          <p class="function-time"><span class="time-dot"></span>11:00 AM</p>
+        </article>
+
+        <!-- 12 December: Chadhat -->
+        <article class="event-card tint-blush">
+          <div class="card-top">
+            <span class="date-badge">12 December</span>
+            <svg class="motif-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx="16" cy="16" r="8" stroke="#c29b59" stroke-width="1.3" fill="#f7dfe3"/>
+              <circle cx="16" cy="16" r="3" stroke="#c29b59" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <h4 class="function-name">Chadhat</h4>
+          <p class="function-desc">A joyful procession of music and celebration.</p>
+          <p class="function-time"><span class="time-dot"></span>6:00 PM</p>
+        </article>
+
+        <!-- 14 December: Reception -->
+        <article class="event-card tint-champagne">
+          <div class="card-top">
+            <span class="date-badge">14 December</span>
+            <svg class="motif-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 5L18.8 13.2L27 16L18.8 18.8L16 27L13.2 18.8L5 16L13.2 13.2L16 5Z" stroke="#c29b59" stroke-width="1.3" fill="#f5eadc"/>
+              <circle cx="16" cy="16" r="2.2" fill="#c29b59"/>
+            </svg>
+          </div>
+          <h4 class="function-name">Reception</h4>
+          <p class="function-desc">An evening of music, dance and togetherness.</p>
+          <p class="function-time"><span class="time-dot"></span>6:00 PM</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Closing Section -->
+    <footer class="closing-card">
+      <div class="closing-script">With Warmth &amp; Joy</div>
+      <p class="closing-text">
+        Your presence is the most precious gift we could ask for as we step into this new chapter together.
+      </p>
+      <p class="closing-note">We cannot wait to celebrate with you</p>
+    </footer>
+
+    <!-- Subtle Single-Line Credit -->
+    <p class="subtle-credit">Website created by Khyati</p>
+  </main>
+
+  <script>
+    // Backup JS handler alongside the native CSS checkbox toggle
+    const openToggle = document.getElementById('open-toggle');
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const mainInvitation = document.getElementById('main-invitation');
+    const openBtn = document.getElementById('open-invitation-btn');
+
+    function openInvite() {
+      if (openToggle) openToggle.checked = true;
+      if (welcomeScreen) welcomeScreen.classList.add('dismissed');
+      if (mainInvitation) mainInvitation.classList.add('revealed');
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', openInvite);
+      openBtn.addEventListener('touchend', openInvite);
+    }
+
+    // Countdown to 9 December (6:00 PM)
+    function getTargetWeddingDate() {
+      const now = new Date();
+      let year = now.getFullYear();
+      let target = new Date(year, 11, 9, 18, 0, 0);
+      if (now > target) {
+        target = new Date(year + 1, 11, 9, 18, 0, 0);
+      }
+      return target;
+    }
+
+    const weddingTarget = getTargetWeddingDate();
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingTarget - now;
+
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent = '00';
+        document.getElementById('cd-secs').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
